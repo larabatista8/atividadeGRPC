@@ -24,11 +24,25 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0ctarefa.protob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0ctarefa.proto\x12\ratividadeGRPC\"p\n\x06Tarefa\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0e\n\x06titulo\x18\x02 \x01(\t\x12\x11\n\tdescricao\x18\x03 \x01(\t\x12\x0e\n\x06status\x18\x04 \x01(\t\x12\x12\n\ndataLimite\x18\x05 \x01(\t\x12\x13\n\x0bresponsavel\x18\x06 \x01(\t\"p\n\x12RequestCriarTarefa\x12\x0e\n\x06titulo\x18\x01 \x01(\t\x12\x11\n\tdescricao\x18\x02 \x01(\t\x12\x0e\n\x06status\x18\x03 \x01(\t\x12\x12\n\ndataLimite\x18\x04 \x01(\t\x12\x13\n\x0bresponsavel\x18\x05 \x01(\t\"\x16\n\x14RequestListarTarefas\">\n\x15ResponseListarTarefas\x12%\n\x06tarefa\x18\x01 \x03(\x0b\x32\x15.atividadeGRPC.Tarefa\"\"\n\x14RequestDeletarTarefa\x12\n\n\x02id\x18\x01 \x01(\t\"*\n\x15ResponseDeletarTarefa\x12\x11\n\tconcluido\x18\x01 \x01(\x08\x32\xd4\x02\n\x10GerenciarTarefas\x12G\n\x0b\x43riarTarefa\x12!.atividadeGRPC.RequestCriarTarefa\x1a\x15.atividadeGRPC.Tarefa\x12Z\n\rListarTarefas\x12#.atividadeGRPC.RequestListarTarefas\x1a$.atividadeGRPC.ResponseListarTarefas\x12?\n\x0f\x41tualizarTarefa\x12\x15.atividadeGRPC.Tarefa\x1a\x15.atividadeGRPC.Tarefa\x12Z\n\rDeletarTarefa\x12#.atividadeGRPC.RequestDeletarTarefa\x1a$.atividadeGRPC.ResponseDeletarTarefab\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'tarefa_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
+  _globals['_TAREFA']._serialized_start=31
+  _globals['_TAREFA']._serialized_end=143
+  _globals['_REQUESTCRIARTAREFA']._serialized_start=145
+  _globals['_REQUESTCRIARTAREFA']._serialized_end=257
+  _globals['_REQUESTLISTARTAREFAS']._serialized_start=259
+  _globals['_REQUESTLISTARTAREFAS']._serialized_end=281
+  _globals['_RESPONSELISTARTAREFAS']._serialized_start=283
+  _globals['_RESPONSELISTARTAREFAS']._serialized_end=345
+  _globals['_REQUESTDELETARTAREFA']._serialized_start=347
+  _globals['_REQUESTDELETARTAREFA']._serialized_end=381
+  _globals['_RESPONSEDELETARTAREFA']._serialized_start=383
+  _globals['_RESPONSEDELETARTAREFA']._serialized_end=425
+  _globals['_GERENCIARTAREFAS']._serialized_start=428
+  _globals['_GERENCIARTAREFAS']._serialized_end=768
 # @@protoc_insertion_point(module_scope)

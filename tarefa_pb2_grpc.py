@@ -3,6 +3,7 @@
 import grpc
 import warnings
 
+import tarefa_pb2 as tarefa__pb2
 
 GRPC_GENERATED_VERSION = '1.83.1'
 GRPC_VERSION = grpc.__version__
@@ -22,3 +23,204 @@ if _version_not_supported:
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
     )
+
+
+class GerenciarTarefasStub:
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.CriarTarefa = channel.unary_unary(
+                '/atividadeGRPC.GerenciarTarefas/CriarTarefa',
+                request_serializer=tarefa__pb2.RequestCriarTarefa.SerializeToString,
+                response_deserializer=tarefa__pb2.Tarefa.FromString,
+                _registered_method=True)
+        self.ListarTarefas = channel.unary_unary(
+                '/atividadeGRPC.GerenciarTarefas/ListarTarefas',
+                request_serializer=tarefa__pb2.RequestListarTarefas.SerializeToString,
+                response_deserializer=tarefa__pb2.ResponseListarTarefas.FromString,
+                _registered_method=True)
+        self.AtualizarTarefa = channel.unary_unary(
+                '/atividadeGRPC.GerenciarTarefas/AtualizarTarefa',
+                request_serializer=tarefa__pb2.Tarefa.SerializeToString,
+                response_deserializer=tarefa__pb2.Tarefa.FromString,
+                _registered_method=True)
+        self.DeletarTarefa = channel.unary_unary(
+                '/atividadeGRPC.GerenciarTarefas/DeletarTarefa',
+                request_serializer=tarefa__pb2.RequestDeletarTarefa.SerializeToString,
+                response_deserializer=tarefa__pb2.ResponseDeletarTarefa.FromString,
+                _registered_method=True)
+
+
+class GerenciarTarefasServicer:
+    """Missing associated documentation comment in .proto file."""
+
+    def CriarTarefa(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListarTarefas(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AtualizarTarefa(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeletarTarefa(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_GerenciarTarefasServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'CriarTarefa': grpc.unary_unary_rpc_method_handler(
+                    servicer.CriarTarefa,
+                    request_deserializer=tarefa__pb2.RequestCriarTarefa.FromString,
+                    response_serializer=tarefa__pb2.Tarefa.SerializeToString,
+            ),
+            'ListarTarefas': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListarTarefas,
+                    request_deserializer=tarefa__pb2.RequestListarTarefas.FromString,
+                    response_serializer=tarefa__pb2.ResponseListarTarefas.SerializeToString,
+            ),
+            'AtualizarTarefa': grpc.unary_unary_rpc_method_handler(
+                    servicer.AtualizarTarefa,
+                    request_deserializer=tarefa__pb2.Tarefa.FromString,
+                    response_serializer=tarefa__pb2.Tarefa.SerializeToString,
+            ),
+            'DeletarTarefa': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeletarTarefa,
+                    request_deserializer=tarefa__pb2.RequestDeletarTarefa.FromString,
+                    response_serializer=tarefa__pb2.ResponseDeletarTarefa.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'atividadeGRPC.GerenciarTarefas', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+    server.add_registered_method_handlers('atividadeGRPC.GerenciarTarefas', rpc_method_handlers)
+
+
+ # This class is part of an EXPERIMENTAL API.
+class GerenciarTarefas:
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def CriarTarefa(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/atividadeGRPC.GerenciarTarefas/CriarTarefa',
+            tarefa__pb2.RequestCriarTarefa.SerializeToString,
+            tarefa__pb2.Tarefa.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListarTarefas(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/atividadeGRPC.GerenciarTarefas/ListarTarefas',
+            tarefa__pb2.RequestListarTarefas.SerializeToString,
+            tarefa__pb2.ResponseListarTarefas.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def AtualizarTarefa(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/atividadeGRPC.GerenciarTarefas/AtualizarTarefa',
+            tarefa__pb2.Tarefa.SerializeToString,
+            tarefa__pb2.Tarefa.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeletarTarefa(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/atividadeGRPC.GerenciarTarefas/DeletarTarefa',
+            tarefa__pb2.RequestDeletarTarefa.SerializeToString,
+            tarefa__pb2.ResponseDeletarTarefa.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)

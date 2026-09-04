@@ -1,3 +1,44 @@
 syntax = "proto3";
 
 
+package atividadeGRPC;
+
+message Tarefa{
+    string id =1;
+    string titulo =2;
+    string descricao =3;
+    string status =4;
+    string dataLimite = 5;
+    string responsavel = 6;
+}
+
+message RequestCriarTarefa{
+    string titulo =1;
+    string descricao =2;
+    string status =3;
+    string dataLimite = 4;
+    string responsavel = 5;
+}
+
+message RequestListarTarefas{
+   
+}
+
+message ResponseListarTarefas{
+    repeated Tarefa tarefa =1;
+}
+
+message RequestDeletarTarefa{
+     string id=1;
+}
+
+message ResponseDeletarTarefa{
+    bool concluido =1;
+}
+
+service GerenciarTarefas{
+    rpc CriarTarefa(RequestCriarTarefa) returns (Tarefa);
+    rpc ListarTarefas(RequestListarTarefas) returns (ResponseListarTarefas);
+    rpc AtualizarTarefa(Tarefa) returns (Tarefa);
+    rpc DeletarTarefa(RequestDeletarTarefa) returns (ResponseDeletarTarefa);
+}
