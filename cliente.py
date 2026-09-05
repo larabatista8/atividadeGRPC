@@ -1,4 +1,4 @@
 import time
 import grpc
-import greet_pb2
-import greet_pb2_grpc
+import tarefa_pb2
+import tarefa_pb2_grpc

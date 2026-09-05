@@ -1,31 +1,52 @@
 from concurrent import futures
-import time
-
+import uuid
 import grpc
-import greet_pb2
-import greet_pb2_grpc
+import tarefa_pb2
+import tarefa_pb2_grpc
 
-class GeetServicer(greet_pb2_grpc.GreeterSErvicer):
-    def SayHello(self, request, context):
-        return super().SayHello(request, context)
+class TarefaServicer(tarefa_pb2_grpc.GerenciarTarefasServicer):
+    def __init__(self):
+        self.bd_tarefas= {}
 
-    def ParrotSaysHello(self, request, context):
-            return super().ParrotSaysHello(request, context)
+    def CriarTarefa(self, request, context):
+        #cria id, converte pra string e cria dicionario com os dados
+        id_uuid = uuid.uuid4()
+        id_str = str(id_uuid)
+        #extrai dados da request
+        tarefa = tarefa_pb2.Tarefa(
+        id=id_str,
+        titulo=request.titulo,
+        descricao=request.descricao,
+        status=request.status,
+        dataLimite=request.dataLimite,
+        responsavel=request.responsavel
+    )
+        #salva tarefa
+        self.bd_tarefas[id_str]=tarefa
 
-    def ChattyClientSaysHello(self, request, context):
-            return super().ChattyClientSaysHello(request, context)
+        return tarefa
 
-    def InteractingHello(self, request, context):
-                return super().InteractingHello(request, context)
+    def ListarTarefas(self, request, context):
+        lista = tarefa_pb2.ResponseListarTarefas()
+    # percorre os item do dicionario
+        for item in self.bd_tarefas.values():
+            lista.tarefa.append(item)
+        return lista
+
+    def AtualizarTarefa(self, request, context):
+            return ""
+
+    def DeletarTarefa(self, request, context):
+                return ""
 
     #configura o servidor
-    def serve():
-          server = grpc.Server(futures.ThreadPoolExecutor(max_workers =10)) 
-          greet_pb2.grpc.add_GreetServicer_to_server(GreeterServicer(),server)
-          server.add_insecure_port('localhost:50051')
+def serve():
+          server = grpc.server(futures.ThreadPoolExecutor(max_workers =10)) 
+          tarefa_pb2_grpc.add_GerenciarTarefasServicer_to_server(TarefaServicer(),server)
+          server.add_insecure_port('0.0.0.0:50051')
           server.start()
           server.wait_for_termination()
 
-    if __name__ == "__main__" :
-        serve()
+if __name__ == "__main__" :
+    serve()
     
