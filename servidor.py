@@ -34,16 +34,30 @@ class TarefaServicer(tarefa_pb2_grpc.GerenciarTarefasServicer):
         return lista
 
     def AtualizarTarefa(self, request, context):
-            return ""
+        # ve se o id existe no dicionario
+        if request.id in self.bd_tarefas:
+            # atualiza os dados da tarefa
+            self.bd_tarefas[request.id] = request
+            return request
+        else:
+            # se nao achar retorna vazio mesmo
+            return tarefa_pb2.Tarefa()
 
     def DeletarTarefa(self, request, context):
-                return ""
+                # tenta achar o id pra apagar
+        if request.id in self.bd_tarefas:
+            del self.bd_tarefas[request.id]
+            return tarefa_pb2.ResponseDeletarTarefa(concluido=True)
+        else:
+            return tarefa_pb2.ResponseDeletarTarefa(concluido=False)
+      
 
     #configura o servidor
 def serve():
           server = grpc.server(futures.ThreadPoolExecutor(max_workers =10)) 
           tarefa_pb2_grpc.add_GerenciarTarefasServicer_to_server(TarefaServicer(),server)
           server.add_insecure_port('0.0.0.0:50051')
+          print("Servidor está funcionando!")
           server.start()
           server.wait_for_termination()
 
