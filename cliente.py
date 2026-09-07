@@ -4,7 +4,7 @@ import tarefa_pb2
 import tarefa_pb2_grpc
 
 # conectando no server
-canal = grpc.insecure_channel('localhost:50051')
+canal = grpc.insecure_channel('192.168.50.10:50051')
 stub = tarefa_pb2_grpc.GerenciarTarefasStub(canal)
 
 print("teste criar tarefa")
