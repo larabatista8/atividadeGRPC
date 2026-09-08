@@ -4,7 +4,7 @@ import tarefa_pb2_grpc
 import subprocess
 import os
 
-canal = grpc.insecure_channel('localhost:50051')
+canal = grpc.insecure_channel('192.168.50.10:50051')
 stub = tarefa_pb2_grpc.GerenciarTarefasStub(canal)
 
 while True:
