@@ -1,5 +1,11 @@
 # Sistema de Gerenciamento de Tarefas com gRPC
 
+## Integrantes
+- Alexsandra da Costa Andrade  
+- Larissa Batista dos Santos  
+- Ruslan Andruscha Duete Lima Moreira  
+- Éricles Barros de Sá
+
 ## Descrição
 Este projeto é um sistema de gerenciamento de tarefas utilizando a arquitetura Cliente-Servidor com **gRPC** e **Protocol Buffers** em Python. O servidor oferece as operações básicas de CRUD (Criar, Listar, Atualizar, Deletar) para as tarefas.
 
